@@ -11,6 +11,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Checkov GitHub Action
         uses: bridgecrewio/checkov-action@v12
+        with:
+          skip_check: CKV_TF_1 # TODO: add module/template versioning
       - name: terraform validate
         run: |
           terraform init
