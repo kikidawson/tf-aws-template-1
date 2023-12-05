@@ -4,19 +4,28 @@ on:
   pull_request:
     types: ["opened", "synchronize", "auto_merge_enabled"]
 
+permissions:
+      id-token: write
+      contents: read
+
 jobs:
   checks:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Checkov GitHub Action
+      - name: checkov github action
         id: checkov
         uses: bridgecrewio/checkov-action@master
         with:
           skip_check: CKV_TF_1 # TODO: add module/template versioning
           framework: terraform
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          role-to-assume: arn:aws:iam::534750600864:role/cicd-admin
+          role-session-name: cicd-admin
+          aws-region: eu-west-2
       - name: terraform validate
         run: |
           terraform init
           terraform validate
-          echo validated
