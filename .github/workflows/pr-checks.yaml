@@ -25,6 +25,15 @@ jobs:
           role-to-assume: arn:aws:iam::534750600864:role/cicd-admin
           role-session-name: cicd-admin
           aws-region: eu-west-2
+      - name: terraform format
+        run: |
+          terraform init
+          terraform fmt -check
+          if [[ $? != 0 ]];
+          then
+            echo "Terraform formatted incorrectly."
+            exit 1
+          fi
       - name: terraform validate
         run: |
           terraform init
