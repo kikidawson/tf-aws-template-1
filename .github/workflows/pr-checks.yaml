@@ -25,7 +25,10 @@ jobs:
           role-to-assume: arn:aws:iam::534750600864:role/cicd-admin
           role-session-name: cicd-admin
           aws-region: eu-west-2
-      - name: terraform validate
+      - name: terraform format
         run: |
           terraform init
-          terraform validate
+          terraform fmt -list=false -check
+      - name: terraform plan
+        run: |
+          terraform plan
