@@ -31,5 +31,5 @@ jobs:
           terraform fmt -list=false -check
       - name: terraform validate
         run: |
-          terraform init
+          # terraform init
           terraform validate
