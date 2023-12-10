@@ -29,7 +29,6 @@ jobs:
         run: |
           terraform init
           terraform fmt -list=false -check
-      - name: terraform validate
+      - name: terraform plan
         run: |
-          # terraform init
-          terraform validate
+          terraform plan
