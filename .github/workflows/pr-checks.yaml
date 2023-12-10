@@ -29,8 +29,10 @@ jobs:
         run: |
           terraform init
           terraform fmt -check
-          if [[ $? != 0 ]];
+          if [[ $? == 0 ]];
           then
+            echo "Terraform formatted correctly."
+          else
             echo "Terraform formatted incorrectly."
             exit 1
           fi
