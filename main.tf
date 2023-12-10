@@ -1,18 +1,12 @@
 resource "aws_kms_key" "this" {
-  #checkov:skip=CKV_AWS_7
-  #checkov:skip=CKV2_AWS_64
+  #checkov:skip=CKV_AWS_7, CKV2_AWS_64
 
   description             = "This key is used to encrypt bucket objects."
   deletion_window_in_days = 10
 }
 
 module "s3" {
-  #checkov:skip=CKV2_AWS_61
-  #checkov:skip=CKV_AWS_18
-  #checkov:skip=CKV2_AWS_65
-  #checkov:skip=CKV2_AWS_62
-  #checkov:skip=CKV_AWS_144
-  #checkov:skip=CKV2_AWS_64
+  #checkov:skip=CKV2_AWS_61, CKV_AWS_18, CKV2_AWS_65, CKV2_AWS_62, CKV_AWS_144, CKV2_AWS_64
 
   source = "git::https://github.com/kikidawson/tf-aws-module-s3.git?ref=main"
 
