@@ -17,5 +17,5 @@ module "s3" {
   source = "git::https://github.com/kikidawson/tf-aws-module-s3.git?ref=main"
 
   name        = "tester-${data.aws_caller_identity.current.account_id}"
-  kms_key_arn = aws_kms_key.this.arn
+kms_key_arn = aws_kms_key.this.arn
 }

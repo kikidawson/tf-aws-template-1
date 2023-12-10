@@ -28,14 +28,7 @@ jobs:
       - name: terraform format
         run: |
           terraform init
-          terraform fmt -check
-          if [[ $? == 0 ]];
-          then
-            echo "Terraform formatted correctly."
-          else
-            echo "Terraform formatted incorrectly."
-            exit 1
-          fi
+          terraform fmt -list=false -check
       - name: terraform validate
         run: |
           terraform init
